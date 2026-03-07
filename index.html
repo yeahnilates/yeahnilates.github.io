@@ -586,6 +586,99 @@
       letter-spacing: 0.1em;
     }
 
+    /* CUSTOM CURSOR */
+    .cursor-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--dark);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      transition: transform 0.1s;
+      mix-blend-mode: difference;
+    }
+
+    .cursor-ring {
+      width: 35px;
+      height: 35px;
+      border: 1px solid rgba(44, 40, 37, 0.4);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 9998;
+      transition: transform 0.25s ease, width 0.3s, height 0.3s, border-color 0.3s;
+      transform: translate(-50%, -50%);
+    }
+
+    .cursor-ring.hover {
+      width: 60px;
+      height: 60px;
+      border-color: var(--accent);
+    }
+
+    /* MARQUEE */
+    .marquee {
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 2rem 0;
+      border-top: 1px solid rgba(181, 173, 166, 0.2);
+      border-bottom: 1px solid rgba(181, 173, 166, 0.2);
+    }
+
+    .marquee-inner {
+      display: inline-flex;
+      animation: marquee 25s linear infinite;
+    }
+
+    .marquee-inner span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 300;
+      color: var(--warm-gray);
+      letter-spacing: 0.15em;
+      padding: 0 2rem;
+    }
+
+    .marquee-inner span::after {
+      content: '\2022';
+      margin-left: 2rem;
+    }
+
+    @keyframes marquee {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* COUNTER ANIMATION */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      padding: 4rem 2rem;
+      background: var(--cream);
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-item .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    .stat-item .stat-label {
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-top: 0.5rem;
+      font-weight: 300;
+    }
+
     /* ANIMATIONS */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(30px); }
@@ -597,6 +690,26 @@
       50% { transform: translateX(-50%) translateY(8px); }
     }
 
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(60px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes textReveal {
+      from { clip-path: inset(0 100% 0 0); }
+      to { clip-path: inset(0 0 0 0); }
+    }
+
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -606,6 +719,94 @@
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-60px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(60px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal-right.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.85);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal-scale.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* STAGGERED CHILDREN */
+    .stagger-children.visible > * {
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .stagger-children > *:nth-child(1) { animation-delay: 0s; }
+    .stagger-children > *:nth-child(2) { animation-delay: 0.15s; }
+    .stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+    .stagger-children > *:nth-child(4) { animation-delay: 0.45s; }
+
+    .stagger-children > * {
+      opacity: 0;
+    }
+
+    /* PARALLAX HERO IMAGE */
+    .hero-bg {
+      transition: transform 0.1s linear;
+    }
+
+    /* HOVER TILT EFFECT */
+    .tilt-card {
+      transition: transform 0.3s ease;
+    }
+
+    /* SMOOTH IMAGE REVEAL */
+    .img-reveal {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .img-reveal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--cream);
+      z-index: 2;
+      transform: scaleX(1);
+      transform-origin: right;
+      transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .img-reveal.visible::before {
+      transform: scaleX(0);
+    }
+
+    @media (max-width: 900px) {
+      .cursor-dot, .cursor-ring { display: none; }
+      .stats { gap: 2rem; }
+      .stat-item .stat-number { font-size: 2.2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .stats { flex-wrap: wrap; gap: 1.5rem; }
     }
 
     /* LIGHTBOX */
@@ -716,6 +917,10 @@
 </head>
 <body>
 
+  <!-- CUSTOM CURSOR -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
   <!-- NAV -->
   <nav>
     <div class="logo">YEEUN LEE</div>
@@ -750,10 +955,10 @@
 
   <!-- ABOUT -->
   <section class="about" id="about">
-    <div class="about-image reveal">
+    <div class="about-image reveal-left img-reveal">
       <img src="profile/profile1.jpeg" alt="이예은 필라테스 강사">
     </div>
-    <div class="about-text reveal">
+    <div class="about-text reveal-right">
       <span class="section-label">About Me</span>
       <h2>움직임으로<br>삶의 균형을 찾다</h2>
       <p>
@@ -796,13 +1001,21 @@
     </div>
   </section>
 
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-inner">
+      <span>Reformer</span><span>Cadillac</span><span>Chair</span><span>Barrel</span><span>Barre</span><span>Prenatal</span><span>Postnatal</span><span>Core</span><span>Flexibility</span><span>Alignment</span>
+      <span>Reformer</span><span>Cadillac</span><span>Chair</span><span>Barrel</span><span>Barre</span><span>Prenatal</span><span>Postnatal</span><span>Core</span><span>Flexibility</span><span>Alignment</span>
+    </div>
+  </div>
+
   <!-- PROGRAMS -->
   <section class="programs" id="programs">
     <div class="section-header reveal">
       <span class="section-label">Programs</span>
       <h2>맞춤 프로그램</h2>
     </div>
-    <div class="program-list">
+    <div class="program-list stagger-children reveal">
       <div class="program-card reveal">
         <div class="num">01</div>
         <h3>기구 필라테스</h3>
@@ -818,6 +1031,19 @@
         <h3>바레 워크아웃</h3>
         <p>발레 동작을 기반으로 한 전신 토닝 프로그램으로, 긴 근육 라인과 우아한 자세를 만들어 갑니다</p>
       </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-section" style="padding: 6rem 3rem; max-width: 1000px; margin: 0 auto;">
+    <div class="section-header reveal" style="text-align: center; margin-bottom: 3rem;">
+      <span class="section-label" style="font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1rem;">In Motion</span>
+      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300;">Movement in Practice</h2>
+    </div>
+    <div class="reveal-scale" style="position: relative; border-radius: 2px; overflow: hidden;">
+      <video controls playsinline preload="metadata" poster="" style="width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; background: var(--dark);">
+        <source src="video/video.mp4" type="video/mp4">
+      </video>
     </div>
   </section>
 
@@ -917,9 +1143,43 @@
   </div>
 
   <script>
+    // Custom cursor
+    const dot = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX; mouseY = e.clientY;
+      dot.style.left = mouseX - 4 + 'px';
+      dot.style.top = mouseY - 4 + 'px';
+    });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.15;
+      ringY += (mouseY - ringY) * 0.15;
+      ring.style.left = ringX + 'px';
+      ring.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button, .gallery-item, .cert-card, .program-card').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.classList.add('hover'));
+      el.addEventListener('mouseleave', () => ring.classList.remove('hover'));
+    });
+
     // Nav scroll effect
     window.addEventListener('scroll', () => {
       document.querySelector('nav').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Parallax hero
+    window.addEventListener('scroll', () => {
+      const hero = document.querySelector('.hero-bg');
+      if (hero) {
+        const scroll = window.scrollY;
+        hero.style.transform = `translateY(${scroll * 0.3}px)`;
+      }
     });
 
     // Mobile menu
@@ -935,7 +1195,7 @@
       });
     });
 
-    // Scroll reveal
+    // Scroll reveal for all reveal types
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -944,12 +1204,13 @@
       });
     }, { threshold: 0.15 });
 
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale, .stagger-children, .img-reveal').forEach(el => observer.observe(el));
 
     // Lightbox
     function openLightbox(el) {
-      const src = el.querySelector('img').src;
-      document.getElementById('lightbox-img').src = src;
+      const img = el.querySelector('img');
+      if (!img) return;
+      document.getElementById('lightbox-img').src = img.src;
       document.getElementById('lightbox').classList.add('active');
       document.body.style.overflow = 'hidden';
     }
@@ -961,6 +1222,23 @@
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') closeLightbox();
+    });
+
+    // Tilt effect on program cards
+    document.querySelectorAll('.program-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const rotateX = (y - centerY) / 15;
+        const rotateY = (centerX - x) / 15;
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+      });
     });
   </script>
 
