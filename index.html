@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YEEUN LEE | Pilates Instructor</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Sans+KR:wght@200;300;400;500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@200;300;400;500;600&family=Noto+Sans+KR:wght@200;300;400;500&display=swap');
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -50,7 +50,7 @@
     }
 
     nav .logo {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Sora', sans-serif;
       font-size: 1.4rem;
       font-weight: 300;
       letter-spacing: 0.15em;
@@ -145,11 +145,11 @@
     }
 
     .hero-content h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3rem, 8vw, 7rem);
-      font-weight: 300;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 5.5rem);
+      font-weight: 200;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
       margin-bottom: 1.5rem;
     }
 
@@ -234,9 +234,9 @@
     }
 
     .about-text h2 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2rem, 4vw, 3.2rem);
-      font-weight: 300;
+      font-family: 'Sora', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 200;
       line-height: 1.3;
       margin-bottom: 2rem;
     }
@@ -281,7 +281,7 @@
     }
 
     .gallery .section-header h2 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Sora', sans-serif;
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 300;
     }
@@ -357,7 +357,7 @@
     }
 
     .programs .section-header h2 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Sora', sans-serif;
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 300;
     }
@@ -399,17 +399,17 @@
     }
 
     .program-card .num {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 300;
+      font-family: 'Sora', sans-serif;
+      font-size: 2rem;
+      font-weight: 200;
       color: var(--warm-gray);
       margin-bottom: 1.5rem;
     }
 
     .program-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.4rem;
-      font-weight: 400;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 500;
       margin-bottom: 1rem;
       letter-spacing: 0.02em;
     }
@@ -448,7 +448,7 @@
     }
 
     .credentials .section-header h2 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Sora', sans-serif;
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 300;
       color: var(--light);
@@ -475,9 +475,9 @@
     }
 
     .cert-card .cert-year {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2rem;
-      font-weight: 300;
+      font-family: 'Sora', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 200;
       color: var(--warm-gray);
       white-space: nowrap;
     }
@@ -527,7 +527,7 @@
     }
 
     .contact h2 {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Sora', sans-serif;
       font-size: clamp(2rem, 4vw, 3rem);
       font-weight: 300;
       margin-bottom: 1.5rem;
@@ -632,7 +632,7 @@
     }
 
     .marquee-inner span {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Sora', sans-serif;
       font-size: 1.3rem;
       font-weight: 300;
       color: var(--warm-gray);
@@ -664,7 +664,7 @@
     }
 
     .stat-item .stat-number {
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Sora', sans-serif;
       font-size: 3rem;
       font-weight: 300;
       color: var(--dark);
@@ -799,14 +799,103 @@
       transform: scaleX(0);
     }
 
+    /* REELS SECTION */
+    .reels {
+      padding: 6rem 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .reels .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .reels-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .reel-card {
+      position: relative;
+      aspect-ratio: 9/16;
+      overflow: hidden;
+      border-radius: 12px;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+    }
+
+    .reel-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.4s;
+    }
+
+    .reel-card:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.8);
+    }
+
+    .reel-card .reel-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .reel-card:hover .reel-overlay {
+      opacity: 1;
+    }
+
+    .reel-overlay .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border: 2px solid white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .reel-overlay .play-icon::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 8px 0 8px 14px;
+      border-color: transparent transparent transparent white;
+      margin-left: 3px;
+    }
+
+    .reel-overlay span {
+      color: white;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      font-weight: 300;
+    }
+
     @media (max-width: 900px) {
       .cursor-dot, .cursor-ring { display: none; }
       .stats { gap: 2rem; }
       .stat-item .stat-number { font-size: 2.2rem; }
+      .reels-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 600px) {
       .stats { flex-wrap: wrap; gap: 1.5rem; }
+      .reels-grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
     }
 
     /* LIGHTBOX */
@@ -837,7 +926,7 @@
       color: white;
       font-size: 1.5rem;
       cursor: pointer;
-      font-family: 'Cormorant Garamond', serif;
+      font-family: 'Sora', sans-serif;
       font-weight: 300;
       letter-spacing: 0.1em;
     }
@@ -1034,16 +1123,20 @@
     </div>
   </section>
 
-  <!-- VIDEO -->
-  <section class="video-section" style="padding: 6rem 3rem; max-width: 1000px; margin: 0 auto;">
-    <div class="section-header reveal" style="text-align: center; margin-bottom: 3rem;">
-      <span class="section-label" style="font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1rem;">In Motion</span>
-      <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300;">Movement in Practice</h2>
+  <!-- REELS -->
+  <section class="reels" id="reels">
+    <div class="section-header reveal">
+      <span class="section-label" style="font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 1rem;">Reels</span>
+      <h2 style="font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 200;">Movement in Action</h2>
     </div>
-    <div class="reveal-scale" style="position: relative; border-radius: 2px; overflow: hidden;">
-      <video controls playsinline preload="metadata" poster="" style="width: 100%; display: block; aspect-ratio: 16/9; object-fit: cover; background: var(--dark);">
-        <source src="video/video.mp4" type="video/mp4">
-      </video>
+    <div class="reels-grid stagger-children reveal">
+      <a href="https://www.instagram.com/p/DUVD3asEQeh/" target="_blank" rel="noopener noreferrer" class="reel-card">
+        <img src="profile/profile5.jpeg" alt="Pilates Reel">
+        <div class="reel-overlay">
+          <div class="play-icon"></div>
+          <span>Watch on Instagram</span>
+        </div>
+      </a>
     </div>
   </section>
 
