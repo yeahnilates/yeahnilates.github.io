@@ -364,8 +364,8 @@
 
     .program-list {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
     }
 
     .program-card {
@@ -507,6 +507,78 @@
       color: var(--warm-gray);
       font-weight: 300;
       letter-spacing: 0.05em;
+    }
+
+    /* QUALIFICATION DETAIL LIST */
+    .qual-section {
+      margin-top: 4rem;
+      padding-top: 3rem;
+      border-top: 1px solid rgba(181, 173, 166, 0.15);
+    }
+
+    .qual-section .qual-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--light);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .qual-section .qual-title .qual-icon {
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--warm-gray);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--warm-gray);
+      flex-shrink: 0;
+    }
+
+    .qual-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.6rem 2rem;
+    }
+
+    .qual-list li {
+      list-style: none;
+      font-size: 0.82rem;
+      color: rgba(250, 248, 246, 0.75);
+      font-weight: 300;
+      padding: 0.5rem 0;
+      padding-left: 1rem;
+      position: relative;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+    }
+
+    .qual-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--warm-gray);
+    }
+
+    .qual-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    @media (max-width: 900px) {
+      .qual-list { grid-template-columns: 1fr; }
+      .qual-columns { grid-template-columns: 1fr; gap: 2rem; }
     }
 
     /* CONTACT */
@@ -812,36 +884,117 @@
     }
 
     .reels-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
-      align-items: start;
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--warm-gray) transparent;
     }
 
-    .reels-grid .ig-embed {
-      min-width: 0 !important;
-      max-width: 100% !important;
-      width: 100% !important;
-      border-radius: 12px;
+    .reels-grid::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    .reels-grid::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .reels-grid::-webkit-scrollbar-thumb {
+      background: var(--warm-gray);
+      border-radius: 2px;
+    }
+
+    .reel-card {
+      flex-shrink: 0;
+      width: 220px;
+      scroll-snap-align: start;
+      position: relative;
+      aspect-ratio: 9/16;
       overflow: hidden;
+      border-radius: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
     }
 
-    .reels-grid iframe {
-      border-radius: 12px !important;
+    .reel-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.3s;
+    }
+
+    .reel-card:hover img {
+      transform: scale(1.06);
+      filter: brightness(0.75);
+    }
+
+    .reel-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(0, 0, 0, 0.15);
+      transition: background 0.3s;
+    }
+
+    .reel-card:hover .reel-overlay {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .reel-overlay .play-icon {
+      width: 44px;
+      height: 44px;
+      border: 2px solid rgba(255,255,255,0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0.7;
+      transition: opacity 0.3s, transform 0.3s;
+    }
+
+    .reel-card:hover .play-icon {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+
+    .reel-overlay .play-icon::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 7px 0 7px 12px;
+      border-color: transparent transparent transparent rgba(255,255,255,0.9);
+      margin-left: 3px;
+    }
+
+    .reel-overlay span {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      font-weight: 300;
     }
 
     @media (max-width: 900px) {
       .cursor-dot, .cursor-ring { display: none; }
       .stats { gap: 2rem; }
       .stat-item .stat-number { font-size: 2.2rem; }
-      .reels-grid { grid-template-columns: repeat(2, 1fr); }
       .reels { padding: 5rem 2rem; }
+      .program-list { grid-template-columns: repeat(2, 1fr); }
     }
 
     @media (max-width: 600px) {
       .stats { flex-wrap: wrap; gap: 1.5rem; }
-      .reels-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
       .reels { padding: 4rem 1.5rem; }
+      .program-list { grid-template-columns: 1fr; }
     }
 
     /* LIGHTBOX */
@@ -1063,6 +1216,11 @@
       </div>
       <div class="program-card reveal">
         <div class="num">03</div>
+        <h3>키즈 필라테스</h3>
+        <p>성장기 아이들의 바른 자세 형성과 체형 균형을 위한 놀이 기반의 재미있는 필라테스 프로그램</p>
+      </div>
+      <div class="program-card reveal">
+        <div class="num">04</div>
         <h3>바레 워크아웃</h3>
         <p>발레 동작을 기반으로 한 전신 토닝 프로그램으로, 긴 근육 라인과 우아한 자세를 만들어 갑니다</p>
       </div>
@@ -1076,14 +1234,31 @@
       <h2 style="font-family: 'Sora', sans-serif; font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 200;">Movement in Action</h2>
     </div>
     <div class="reels-grid reveal">
-      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DUVD3asEQeh/" data-instgrm-version="14" style="max-width:100%;"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DSAY-cRgWni/" data-instgrm-version="14" style="max-width:100%;"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DSfVgOaASxH/" data-instgrm-version="14" style="max-width:100%;"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DQlp02qkbO3/" data-instgrm-version="14" style="max-width:100%;"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DQL83_UgcHN/" data-instgrm-version="14" style="max-width:100%;"></blockquote>
-      <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DPbkajcgUkE/" data-instgrm-version="14" style="max-width:100%;"></blockquote>
+      <a href="https://www.instagram.com/p/DUVD3asEQeh/" target="_blank" rel="noopener noreferrer" class="reel-card">
+        <img src="profile/profile5.jpeg" alt="Reel">
+        <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
+      </a>
+      <a href="https://www.instagram.com/p/DSAY-cRgWni/" target="_blank" rel="noopener noreferrer" class="reel-card">
+        <img src="profile/profile1.jpeg" alt="Reel">
+        <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
+      </a>
+      <a href="https://www.instagram.com/p/DSfVgOaASxH/" target="_blank" rel="noopener noreferrer" class="reel-card">
+        <img src="profile/profile3.jpeg" alt="Reel">
+        <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
+      </a>
+      <a href="https://www.instagram.com/p/DQlp02qkbO3/" target="_blank" rel="noopener noreferrer" class="reel-card">
+        <img src="profile/profile4.jpeg" alt="Reel">
+        <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
+      </a>
+      <a href="https://www.instagram.com/p/DQL83_UgcHN/" target="_blank" rel="noopener noreferrer" class="reel-card">
+        <img src="profile/profile2.jpeg" alt="Reel">
+        <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
+      </a>
+      <a href="https://www.instagram.com/p/DPbkajcgUkE/" target="_blank" rel="noopener noreferrer" class="reel-card">
+        <img src="profile/profile1.jpeg" alt="Reel">
+        <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
+      </a>
     </div>
-    <script async src="//www.instagram.com/embed.js"></script>
   </section>
 
   <!-- CREDENTIALS -->
@@ -1093,6 +1268,8 @@
         <span class="section-label">Credentials</span>
         <h2>Certifications &amp; Career</h2>
       </div>
+
+      <!-- Certificate Image Cards -->
       <div class="cert-grid">
         <div class="cert-card reveal" onclick="openLightbox(this)" style="cursor:pointer;">
           <img src="cer/cer_basi.jpg" alt="BASI Pilates Certificate" class="cert-thumb">
@@ -1126,26 +1303,69 @@
             <span class="issuer">Global Barre Institute</span>
           </div>
         </div>
+        <div class="cert-card reveal" onclick="openLightbox(this)" style="cursor:pointer;">
+          <img src="cer/cer_kids.jpg" alt="Kids Pilates Certificate" class="cert-thumb">
+          <div class="cert-info">
+            <span class="cert-year">2026</span>
+            <h3>Pilates for Kids</h3>
+            <span class="issuer">IIPAMASTER Instructor Course</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Qualifications -->
+      <div class="qual-section reveal">
+        <div class="qual-columns">
+          <div>
+            <div class="qual-title">
+              <span class="qual-icon">B</span>
+              BASI Pilates&reg; Comprehensive
+            </div>
+            <ul class="qual-list">
+              <li>Anatomy Certificate</li>
+              <li>Mat Pilates Teaching Certificate</li>
+              <li>Reformer Teaching Certificate</li>
+              <li>Cadillac Teaching Certificate</li>
+              <li>Chair Teaching Certificate</li>
+              <li>Barrel Teaching Certificate</li>
+              <li>F2 Chair Teaching Certificate</li>
+              <li>F2 Apparatus Training (Spine Corrector, Magic Circle, Weights)</li>
+              <li>Anatomy Teaching Skill Enhancement Program (BASI Pilates&reg; Faculty)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="qual-title">
+              <span class="qual-icon">+</span>
+              Specialized Certifications
+            </div>
+            <ul class="qual-list">
+              <li>국제바레협회 바레지도사 자격증</li>
+              <li>IIPAMASTER 산전 필라테스 교육 과정 수료</li>
+              <li>IIPAMASTER 산후 필라테스 교육 과정 수료</li>
+              <li>IIPAMASTER 키즈 필라테스 트레이닝 수료</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- Previous Career -->
-      <div class="prev-career reveal" style="margin-top: 4rem; padding-top: 3rem; border-top: 1px solid rgba(181,173,166,0.15); text-align: center;">
-        <span style="font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--warm-gray); display: block; margin-bottom: 2rem;">Previous Career</span>
+      <div class="prev-career reveal" style="margin-top: 3rem; padding-top: 2.5rem; border-top: 1px solid rgba(181,173,166,0.12); text-align: center;">
+        <span style="font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(181,173,166,0.5); display: block; margin-bottom: 1.5rem;">Previous Career</span>
         <div style="display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap;">
           <div style="text-align: center;">
-            <p style="font-size: 0.85rem; font-weight: 400; margin-bottom: 0.3rem;">Pureun Savings Bank</p>
-            <p style="font-size: 0.75rem; color: var(--warm-gray); font-weight: 300;">Asset Management &middot; 2022 &ndash; 2025</p>
+            <p style="font-size: 0.8rem; font-weight: 400; margin-bottom: 0.2rem;">Pureun Savings Bank</p>
+            <p style="font-size: 0.7rem; color: var(--warm-gray); font-weight: 300;">Asset Management &middot; 2022 &ndash; 2025</p>
           </div>
           <div style="text-align: center;">
-            <p style="font-size: 0.85rem; font-weight: 400; margin-bottom: 0.3rem;">Daol Investment &amp; Securities</p>
-            <p style="font-size: 0.75rem; color: var(--warm-gray); font-weight: 300;">Retail Marketing &middot; 2021 &ndash; 2022</p>
+            <p style="font-size: 0.8rem; font-weight: 400; margin-bottom: 0.2rem;">Daol Investment &amp; Securities</p>
+            <p style="font-size: 0.7rem; color: var(--warm-gray); font-weight: 300;">Retail Marketing &middot; 2021 &ndash; 2022</p>
           </div>
           <div style="text-align: center;">
-            <p style="font-size: 0.85rem; font-weight: 400; margin-bottom: 0.3rem;">Yuhwa Securities</p>
-            <p style="font-size: 0.75rem; color: var(--warm-gray); font-weight: 300;">Gangnam Center &middot; 2020 &ndash; 2021</p>
+            <p style="font-size: 0.8rem; font-weight: 400; margin-bottom: 0.2rem;">Yuhwa Securities</p>
+            <p style="font-size: 0.7rem; color: var(--warm-gray); font-weight: 300;">Gangnam Center &middot; 2020 &ndash; 2021</p>
           </div>
         </div>
-        <p style="font-size: 0.7rem; color: rgba(181,173,166,0.6); margin-top: 1.5rem; font-weight: 300;">Fund Investment Advisory License &middot; KOFIA 2022</p>
+        <p style="font-size: 0.65rem; color: rgba(181,173,166,0.4); margin-top: 1rem; font-weight: 300;">Fund Investment Advisory License &middot; KOFIA 2022</p>
       </div>
     </div>
   </section>
