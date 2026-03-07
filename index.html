@@ -287,27 +287,39 @@
     }
 
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.5rem;
+      display: flex;
+      gap: 1rem;
       padding: 0 3rem;
-      max-width: 1400px;
-      margin: 0 auto;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--warm-gray) transparent;
+    }
+
+    .gallery-grid::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    .gallery-grid::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .gallery-grid::-webkit-scrollbar-thumb {
+      background: var(--warm-gray);
+      border-radius: 2px;
     }
 
     .gallery-grid .gallery-item {
+      flex-shrink: 0;
+      width: 320px;
       overflow: hidden;
       position: relative;
       aspect-ratio: 3/4;
       cursor: pointer;
-    }
-
-    .gallery-grid .gallery-item:nth-child(2) {
-      margin-top: 2rem;
-    }
-
-    .gallery-grid .gallery-item:nth-child(3) {
-      margin-top: 4rem;
+      scroll-snap-align: start;
+      border-radius: 4px;
     }
 
     .gallery-grid .gallery-item img {
@@ -542,8 +554,8 @@
 
     .qual-list {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.6rem 2rem;
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
     }
 
     .qual-list li {
@@ -551,10 +563,10 @@
       font-size: 0.82rem;
       color: rgba(250, 248, 246, 0.75);
       font-weight: 300;
-      padding: 0.5rem 0;
+      padding: 0.45rem 0;
       padding-left: 1rem;
       position: relative;
-      line-height: 1.5;
+      line-height: 1.6;
       letter-spacing: 0.01em;
     }
 
@@ -1067,13 +1079,11 @@
       .about-image::after { display: none; }
 
       .gallery-grid {
-        grid-template-columns: 1fr 1fr;
         padding: 0 2rem;
       }
 
-      .gallery-grid .gallery-item:nth-child(2),
-      .gallery-grid .gallery-item:nth-child(3) {
-        margin-top: 0;
+      .gallery-grid .gallery-item {
+        width: 260px;
       }
 
       .program-list {
@@ -1094,7 +1104,8 @@
     @media (max-width: 600px) {
       nav { padding: 1.2rem 1.5rem; }
       .hero-content .sub { font-size: 0.65rem; }
-      .gallery-grid { grid-template-columns: 1fr; padding: 0 1.5rem; }
+      .gallery-grid { padding: 0 1.5rem; }
+      .gallery-grid .gallery-item { width: 240px; }
       .programs { padding: 5rem 1.5rem; }
       .credentials { padding: 5rem 1.5rem; }
       .contact { padding: 5rem 1.5rem; }
@@ -1111,7 +1122,7 @@
 
   <!-- NAV -->
   <nav>
-    <div class="logo">YEEUN LEE</div>
+    <a href="#" class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;" style="text-decoration:none;color:var(--dark);">YEEUN LEE</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#gallery">Gallery</a></li>
@@ -1177,13 +1188,16 @@
       <h2>Movement in Frame</h2>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <div class="gallery-item" onclick="openLightbox(this)">
         <img src="profile/profile2.jpeg" alt="프로필 사진">
       </div>
-      <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <div class="gallery-item" onclick="openLightbox(this)">
+        <img src="profile/profile3.jpeg" alt="프로필 사진">
+      </div>
+      <div class="gallery-item" onclick="openLightbox(this)">
         <img src="profile/profile4.jpeg" alt="프로필 사진">
       </div>
-      <div class="gallery-item reveal" onclick="openLightbox(this)">
+      <div class="gallery-item" onclick="openLightbox(this)">
         <img src="profile/profile5.jpeg" alt="프로필 사진">
       </div>
     </div>
@@ -1235,27 +1249,27 @@
     </div>
     <div class="reels-grid reveal">
       <a href="https://www.instagram.com/p/DUVD3asEQeh/" target="_blank" rel="noopener noreferrer" class="reel-card">
-        <img src="profile/profile5.jpeg" alt="Reel">
+        <img src="reels/reel1.jpg" alt="Reel">
         <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
       </a>
       <a href="https://www.instagram.com/p/DSAY-cRgWni/" target="_blank" rel="noopener noreferrer" class="reel-card">
-        <img src="profile/profile1.jpeg" alt="Reel">
+        <img src="reels/reel2.jpg" alt="Reel">
         <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
       </a>
       <a href="https://www.instagram.com/p/DSfVgOaASxH/" target="_blank" rel="noopener noreferrer" class="reel-card">
-        <img src="profile/profile3.jpeg" alt="Reel">
+        <img src="reels/reel3.jpg" alt="Reel">
         <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
       </a>
       <a href="https://www.instagram.com/p/DQlp02qkbO3/" target="_blank" rel="noopener noreferrer" class="reel-card">
-        <img src="profile/profile4.jpeg" alt="Reel">
+        <img src="reels/reel4.jpg" alt="Reel">
         <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
       </a>
       <a href="https://www.instagram.com/p/DQL83_UgcHN/" target="_blank" rel="noopener noreferrer" class="reel-card">
-        <img src="profile/profile2.jpeg" alt="Reel">
+        <img src="reels/reel5.jpg" alt="Reel">
         <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
       </a>
       <a href="https://www.instagram.com/p/DPbkajcgUkE/" target="_blank" rel="noopener noreferrer" class="reel-card">
-        <img src="profile/profile1.jpeg" alt="Reel">
+        <img src="reels/reel6.jpg" alt="Reel">
         <div class="reel-overlay"><div class="play-icon"></div><span>Instagram</span></div>
       </a>
     </div>
